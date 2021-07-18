@@ -1,0 +1,22 @@
+{
+    "now": "2021-07-18T21:42:45.555Z",
+    "perfNow": 164951227.10000002,
+    "diagnosticCorrelation": "5f39c3af-3cc3-4a12-b940-4f8374712c3d",
+    "source": "DownloadSupportFiles",
+    "environment": {
+        "productName": "a365",
+        "buildVersion": "21.0715.18",
+        "environmentType": 9,
+        "resourceName": "kdsynapseworkspace",
+        "resourceRegion": "eastus",
+        "resourceGroup": "kapildhanger-rg",
+        "subscriptionId": "e494c045-d520-4582-9e34-9de09808efd1",
+        "sessionId": "hahBy",
+        "operationId": "D47w+",
+        "gitType": "live"
+    },
+    "additionalInfo": {
+        "selectedResource": "RecordSplittingHealthData",
+        "selectedResourceType": "pipeline"
+    }
+}

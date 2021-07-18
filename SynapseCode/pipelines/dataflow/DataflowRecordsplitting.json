@@ -1,0 +1,35 @@
+{
+    "name": "DataflowRecordsplitting",
+    "properties": {
+        "type": "MappingDataFlow",
+        "typeProperties": {
+            "sources": [
+                {
+                    "linkedService": {
+                        "referenceName": "kdsynapseworkspace-WorkspaceDefaultStorage",
+                        "type": "LinkedServiceReference"
+                    },
+                    "name": "sourceRecords"
+                }
+            ],
+            "sinks": [
+                {
+                    "dataset": {
+                        "referenceName": "Parquetapplehealth",
+                        "type": "DatasetReference"
+                    },
+                    "name": "sink1"
+                }
+            ],
+            "transformations": [
+                {
+                    "name": "Select1"
+                },
+                {
+                    "name": "DerivedColumn1"
+                }
+            ],
+            "script": "source(output(\n\t\tsourceName as string,\n\t\tsourceVersion as string,\n\t\tdevice as string,\n\t\ttype as string,\n\t\tunit as string,\n\t\tcreationDate as string,\n\t\tstartDate as string,\n\t\tendDate as string,\n\t\tvalue as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'delimited',\n\tfileSystem: 'datalake',\n\tfolderPath: 'Bronze/apple_health_export/source/csv',\n\tfileName: 'Record.csv',\n\tcolumnDelimiter: ',',\n\tescapeChar: '\\\\',\n\tquoteChar: '\\\"',\n\tcolumnNamesAsHeader: true,\n\tqutoChar: '\\\"') ~> sourceRecords\nDerivedColumn1 select(mapColumn(\n\t\teach(match(name!='sourceName'&&name!='sourceVersion'&&name!='device'))\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nsourceRecords derive(activityType = type) ~> DerivedColumn1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tfilePattern:'activityrecords[n].parquet',\n\ttruncate: true,\n\tumask: 0022,\n\tpartitionBy('key',\n\t\t0,\n\t\ttype\n\t)) ~> sink1"
+        }
+    }
+}

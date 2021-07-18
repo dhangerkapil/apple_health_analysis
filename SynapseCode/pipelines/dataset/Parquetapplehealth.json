@@ -1,0 +1,21 @@
+{
+    "name": "Parquetapplehealth",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "kdsynapseworkspace-WorkspaceDefaultStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Parquet",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": "Bronze/apple_health_export/source/parquet",
+                "fileSystem": "datalake"
+            },
+            "compressionCodec": "snappy"
+        },
+        "schema": []
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

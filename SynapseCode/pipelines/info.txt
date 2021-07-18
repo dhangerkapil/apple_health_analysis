@@ -1,0 +1,6 @@
+selected resource name:		RecordSplittingHealthData
+selected resource type:		pipeline
+workspace name:			kdsynapseworkspace
+workspace location:		eastus
+subscription id:		e494c045-d520-4582-9e34-9de09808efd1
+time of download (UTC):		Sun, 18 Jul 2021 21:42:45 GMT
